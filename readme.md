@@ -1,35 +1,35 @@
-#Projeto Dexian MVC
-##Ferramentas Utilizadas
+# Projeto Dexian MVC
+## Ferramentas Utilizadas
 - Delphi 12 Architect
 - SQL Server 2016
 - FireDAC
 - Fast Report
-##Padrões de Nomenclatura e Estruturação
-###Estrutura do Projeto
+## Padrões de Nomenclatura e Estruturação
+### Estrutura do Projeto
 Foi utilizado o padrão típico MVC (Model, View e Controll) com os aquivos fontes de cada camada em uma pasta separada
-###Nomenclatura dos arquivos
+### Nomenclatura dos arquivos
 Para a nomenclatura dos arquivos foi utilizada a notação <Camada>.<Descrição da Classe>.pas.
-###Nomemclatura das Variáveis
+### Nomemclatura das Variáveis
 De acordo com os padrões da linguagem Delphi. Primeiro caracter em maiúsculo e demais palavras em "camel case". Com até 3 palavras para exprimir o seu significado.
-###Nomenclatura dos Componentes
+### Nomenclatura dos Componentes
 Prefixo com o nome original do componente, sem as vogais, seguido do mesmo padrão das variáveis.
 
-##Banco de Dados
+## Banco de Dados
 O script para o banco de dados encontra-se na pasta "Scripts".
 - Nome do servidor utilizado: DESKTOP-D7HQNVE\SQLEXPRESS
 - Database: DexianDB
 - Usuário: dexian_usr
 - Senha: Dexian123!
 
-##Requisitos
-###Ferramentas:
+## Requisitos
+### Ferramentas:
 • Delphi 10 Seattle ou superior.
 • SQL Server 2014 ou superior.
-###Componente de conexão a banco de dados:
+### Componente de conexão a banco de dados:
 • FireDac.
-###Componente de relatório:
+### Componente de relatório:
 • Fast Report.
-###Descrição da aplicação:
+### Descrição da aplicação:
 • A aplicação deve possuir uma tela principal com 3 botões ("Cadastro Pai", "Cadastro Filho" e "Relatório").
 • O botão "Cadastro Pai" se refere a um tema de cadastro de livre escolha do candidato(a) de forma que atenda uma estrutura hierárquica, por exemplo, agências e contas bancárias, lojas e funcionários, venda e produtos vendidos e etc. O botão deve possuir o caption do tema selecionado, por exemplo, "Cadastro de Agências", "Cadastro de Lojas" e etc.
 • O botão "Cadastro Filho" se refere ao tema escolhido na criação do cadastro do item anterior e deve seguir a mesma regra no caption do botão.
