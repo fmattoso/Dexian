@@ -8,7 +8,7 @@
 ### Estrutura do Projeto
 Foi utilizado o padrão típico MVC (Model, View e Controll) com os aquivos fontes de cada camada em uma pasta separada
 ### Nomenclatura dos arquivos
-Para a nomenclatura dos arquivos foi utilizada a notação <Camada>.<Descrição da Classe>.pas.
+Para a nomenclatura dos arquivos foi utilizada a notação [Camada].[Descrição da Classe].pas.
 ### Nomemclatura das Variáveis
 De acordo com os padrões da linguagem Delphi. Primeiro caracter em maiúsculo e demais palavras em "camel case". Com até 3 palavras para exprimir o seu significado.
 ### Nomenclatura dos Componentes
