@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.ToolWin,
   System.Actions, Vcl.ActnList, Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan,
-  Vcl.ActnCtrls, DAO.Relatorio;
+  Vcl.ActnCtrls, DAO.Relatorio, System.ImageList, Vcl.ImgList;
 
 type
   TFrmPrincipal = class(TForm)
@@ -18,6 +18,7 @@ type
     ActnConta: TAction;
     TlBttnRelatorio: TToolButton;
     ActnRelatorio: TAction;
+    ImgLstPrincipal: TImageList;
     procedure ActnAgenciaExecute(Sender: TObject);
     procedure ActnContaExecute(Sender: TObject);
     procedure ActnAgenciasExecute(Sender: TObject);

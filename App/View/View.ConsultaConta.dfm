@@ -14,6 +14,7 @@ inherited FrmConsultaConta: TFrmConsultaConta
     end
     inherited BttnIncluir: TButton
       OnClick = BttnIncluirClick
+      ExplicitLeft = 7
     end
     inherited BttnAlterar: TButton
       OnClick = BttnAlterarClick
@@ -47,6 +48,7 @@ inherited FrmConsultaConta: TFrmConsultaConta
       Height = 120
       Align = alTop
       DataSource = DtSrcAgencia
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ReadOnly = True
       TabOrder = 1
       TitleFont.Charset = DEFAULT_CHARSET
@@ -56,7 +58,7 @@ inherited FrmConsultaConta: TFrmConsultaConta
       TitleFont.Style = []
     end
   end
-  object DtSrcAgencia: TDataSource
+  object DtSrcAgencia: TDataSource [3]
     OnDataChange = DtSrcAgenciaDataChange
     Left = 416
     Top = 64

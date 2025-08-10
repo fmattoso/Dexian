@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.DBCtrls, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Data.DB;
+  Vcl.ExtCtrls, Data.DB, System.ImageList, Vcl.ImgList;
 
 type
   TFrmManutencao = class(TForm)
@@ -15,6 +15,7 @@ type
     BttnSalvar: TButton;
     BttnSair: TButton;
     DBNvManutencao: TDBNavigator;
+    ImgLstManutencao: TImageList;
     procedure BttnSairClick(Sender: TObject);
   private
     { Private declarations }

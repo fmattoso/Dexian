@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, View.Consulta, Data.DB, Vcl.Grids,
-  Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, Controller.Agencia, Controller.Conta;
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, Controller.Agencia, Controller.Conta,
+  System.ImageList, Vcl.ImgList;
 
 type
   TFrmConsultaConta = class(TFrmConsulta)
@@ -21,6 +22,7 @@ type
     procedure BttnConsultarClick(Sender: TObject);
     procedure BttnTodosClick(Sender: TObject);
     procedure BttnFiltrarClick(Sender: TObject);
+    procedure DtSrcConsultaDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
     FIdAgencia: Integer;
@@ -67,6 +69,9 @@ begin
   DtSrcAgencia.DataSet.FieldByName('NomeBanco').DisplayWidth := 40;
   DtSrcAgencia.DataSet.FieldByName('Agencia').DisplayLabel := 'Agência';
   DtSrcAgencia.DataSet.FieldByName('Agencia').DisplayWidth := 35;
+
+  if DtSrcAgencia.DataSet.RecordCount = 0 then
+    ShowMessage('Não há nenhuma Agência cadastrada. Cadastre uma Agência antes de incluir contas.');
 end;
 
 procedure TFrmConsultaConta.AtualizarGridConta;
@@ -153,6 +158,15 @@ begin
     FIdAgencia := IdAgencia;
     AtualizarGridConta;
   end;
+end;
+
+procedure TFrmConsultaConta.DtSrcConsultaDataChange(Sender: TObject;
+  Field: TField);
+begin
+  inherited;
+  { Método herdado, mas não pode incluir se não há Agencias ...}
+  BttnIncluir.Enabled := (DtSrcAgencia.DataSet.RecordCount > 0);
+  BttnTodos.Enabled := BttnIncluir.Enabled;
 end;
 
 procedure TFrmConsultaConta.DoExcluir;

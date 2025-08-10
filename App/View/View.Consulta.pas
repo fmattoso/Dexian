@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.ExtCtrls,
-  Vcl.Grids, Vcl.DBGrids;
+  Vcl.Grids, Vcl.DBGrids, System.ImageList, Vcl.ImgList;
 
 type
   TFrmConsulta = class(TForm)
@@ -21,6 +21,7 @@ type
     PnlConsulta: TPanel;
     DBGrdConsulta: TDBGrid;
     DtSrcConsulta: TDataSource;
+    ImgLstConsulta: TImageList;
     procedure DtSrcConsultaDataChange(Sender: TObject; Field: TField);
     procedure BttnExcluirClick(Sender: TObject);
     procedure BttnSairClick(Sender: TObject);
