@@ -3,7 +3,8 @@ unit View.Consulta;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.ExtCtrls,
   Vcl.Grids, Vcl.DBGrids;
 
@@ -42,7 +43,8 @@ procedure TFrmConsulta.BttnExcluirClick(Sender: TObject);
 var
   DlgResult: Integer;
 begin
-  DlgResult := MessageDlg('Deseja excluir esse registro?', mtConfirmation, [mbYes, mbNo], 0, mbNo);
+  DlgResult := MessageDlg('Deseja excluir esse registro?', mtConfirmation,
+    [mbYes, mbNo], 0, mbNo);
   if DlgResult = mrYes then
     DoExcluir;
 end;
@@ -52,7 +54,6 @@ begin
   with (Sender as TDataSource) do
   begin
     BttnFiltrar.Enabled := (DataSet <> nil) and (DataSet.RecordCount > 0);
-    BttnTodos.Enabled := BttnFiltrar.Enabled;
     BttnIncluir.Enabled := (DataSet <> nil);
     BttnAlterar.Enabled := BttnFiltrar.Enabled;
     BttnExcluir.Enabled := BttnFiltrar.Enabled;

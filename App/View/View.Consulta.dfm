@@ -1,6 +1,7 @@
 object FrmConsulta: TFrmConsulta
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMaximize]
   Caption = 'Consulta'
   ClientHeight = 441
   ClientWidth = 624

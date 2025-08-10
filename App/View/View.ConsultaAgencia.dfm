@@ -1,5 +1,5 @@
 inherited FrmConsultaAgencia: TFrmConsultaAgencia
-  Caption = 'Cadastro Ag'#234'ncia - Consulta'
+  Caption = 'Cadastro de Ag'#234'ncia - Consulta'
   StyleElements = [seFont, seClient, seBorder]
   OnCreate = FormCreate
   OnDestroy = FormDestroy
@@ -20,7 +20,6 @@ inherited FrmConsultaAgencia: TFrmConsultaAgencia
     end
     inherited BttnConsultar: TButton
       OnClick = BttnConsultarClick
-      ExplicitLeft = 7
     end
   end
   inherited PnlConsulta: TPanel

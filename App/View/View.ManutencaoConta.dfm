@@ -10,9 +10,9 @@ inherited FrmManutencaoConta: TFrmManutencaoConta
   object LblNumeroConta: TLabel [0]
     Left = 8
     Top = 13
-    Width = 82
+    Width = 87
     Height = 15
-    Caption = 'N'#250'mero &Conta:'
+    Caption = '*N'#250'mero &Conta:'
     FocusControl = EdtNumeroConta
   end
   object LblDtUltimoMovimento: TLabel [1]
@@ -61,12 +61,19 @@ inherited FrmManutencaoConta: TFrmManutencaoConta
     Left = 341
     Height = 269
     StyleElements = [seFont, seClient, seBorder]
+    ExplicitLeft = 341
+    ExplicitHeight = 269
+    inherited BttnRestaurar: TButton
+      OnClick = BttnRestaurarClick
+    end
     inherited BttnSalvar: TButton
       Top = 173
       OnClick = BttnSalvarClick
+      ExplicitTop = 173
     end
     inherited BttnSair: TButton
       Top = 221
+      ExplicitTop = 221
     end
     inherited DBNvManutencao: TDBNavigator
       Hints.Strings = ()

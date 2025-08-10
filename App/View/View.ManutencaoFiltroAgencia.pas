@@ -9,18 +9,18 @@ uses
 
 type
   TFrmManutencaoFiltroAgencia = class(TFrmManutencao)
-    LblNomeBanco: TLabel;
     EdtNomeBanco: TEdit;
     EdtAgencia: TEdit;
-    LblAgencia: TLabel;
     DtTmDtCriacaoI: TDateTimePicker;
     DtTmDtAtualizaI: TDateTimePicker;
     DtTmDtCriacaoF: TDateTimePicker;
     DtTmDtAtualizaF: TDateTimePicker;
-    LblDataCriacao: TLabel;
-    LblDataAtualizacao: TLabel;
     LblInt1: TLabel;
     Label4: TLabel;
+    ChckBxlNomeBanco: TCheckBox;
+    ChckBxAgencia: TCheckBox;
+    ChckBxDataCriacao: TCheckBox;
+    ChckBxDataAtualizacao: TCheckBox;
     procedure BttnSalvarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -28,7 +28,6 @@ type
     { Private declarations }
     FController: TControllerAgencia;
 
-    function ObterDateTime(Value: TDateTime; Tipo: Char): TDateTime;
   public
     { Public declarations }
     destructor Destroy; override;
@@ -55,40 +54,51 @@ begin
   SetLength(ValFim, 4);
 
   Campos[0] := 'NomeBanco';
-  if Trim(EdtNomeBanco.Text) = '' then
-    ValIni[0] := Null
+  Campos[1] := 'Agencia';
+  Campos[2] := 'DataCriacao';
+  Campos[3] := 'DataAtualizacao';
+
+  if ChckBxlNomeBanco.Checked then
+    ValIni[0] := Trim(EdtNomeBanco.Text)
   else
-    ValIni[0] := Trim(EdtNomeBanco.Text);
+    ValIni[0] := Null;
   ValFim[0] := Null;
 
-  Campos[1] := 'Agencia';
-  if Trim(EdtAgencia.Text) = '' then
-    ValIni[1] := Null
+  if ChckBxAgencia.Checked then
+    ValIni[1] := Trim(EdtAgencia.Text)
   else
-    ValIni[1] := Trim(EdtAgencia.Text);
+    ValIni[1] := Null;
   ValFim[1] := Null;
 
-  Campos[2] := 'DataCriacao';
-  ValIni[2] := ObterDateTime(DtTmDtCriacaoI.DateTime, 'I');
-  ValFim[2] := ObterDateTime(DtTmDtCriacaoF.DateTime, 'F');
+  if ChckBxDataCriacao.Checked then
+  begin
+    ValIni[2] := DtTmDtCriacaoI.DateTime;
+    ValFim[2] := DtTmDtCriacaoF.DateTime;
+  end
+  else
+  begin
+    ValIni[2] := Null;
+    ValFim[2] := Null;
+  end;
 
-  Campos[3] := 'DataAtualizacao';
-  ValIni[3] := ObterDateTime(DtTmDtAtualizaI.DateTime, 'I');
-  ValFim[3] := ObterDateTime(DtTmDtAtualizaF.DateTime, 'F');
+  if ChckBxDataAtualizacao.Checked then
+  begin
+    ValIni[3] := DtTmDtAtualizaI.DateTime;
+    ValFim[3] := DtTmDtAtualizaF.DateTime;
+  end
+  else
+  begin
+    ValIni[3] := Null;
+    ValFim[3] := Null;
+  end;
 
   ConsultaDataSource.DataSet := FController.Filtrar(Campos, ValIni, ValFim);
+  ConsultaDataSource.DataSet.FieldByName('AgenciaId').Visible := False;
+  ConsultaDataSource.DataSet.FieldByName('NomeBanco').DisplayLabel := 'Nome do Banco';
+  ConsultaDataSource.DataSet.FieldByName('NomeBanco').DisplayWidth := 40;
+  ConsultaDataSource.DataSet.FieldByName('Agencia').DisplayLabel := 'Agência';
+  ConsultaDataSource.DataSet.FieldByName('Agencia').DisplayWidth := 35;
 
-end;
-
-function TFrmManutencaoFiltroAgencia.ObterDateTime(Value: TDateTime; Tipo: Char): TDateTime;
-var
-  Dia, Mes, Ano: Word;
-begin
-  DecodeDate(Value, Ano, Mes, Dia);
-  if Tipo = 'I' then
-    Result := EncodeDateTime(Ano, Mes, Dia, 0, 0, 0, 0)
-  else
-    Result := EncodeDateTime(Ano, Mes, Dia, 23, 59, 59, 999);
 end;
 
 procedure TFrmManutencaoFiltroAgencia.FormCreate(Sender: TObject);
@@ -98,14 +108,17 @@ begin
 end;
 
 procedure TFrmManutencaoFiltroAgencia.FormShow(Sender: TObject);
+var
+  Ano, Mes, Dia: Word;
 begin
   inherited;
+  DecodeDate(Now, Ano, Mes, Dia);
   EdtNomeBanco.Clear;
   EdtAgencia.Clear;
-  DtTmDtCriacaoI.DateTime := Now;
-  DtTmDtCriacaoF.DateTime := Now;
-  DtTmDtAtualizaI.DateTime := Now;
-  DtTmDtAtualizaF.DateTime := Now;
+  DtTmDtCriacaoI.DateTime := EncodeDateTime(Ano, Mes, Dia, 0, 0, 0, 0);
+  DtTmDtCriacaoF.DateTime := EncodeDateTime(Ano, Mes, Dia, 23, 59, 59, 999);
+  DtTmDtAtualizaI.DateTime := EncodeDateTime(Ano, Mes, Dia, 0, 0, 0, 0);
+  DtTmDtAtualizaF.DateTime := EncodeDateTime(Ano, Mes, Dia, 23, 59, 59, 999);
 end;
 
 destructor TFrmManutencaoFiltroAgencia.Destroy;

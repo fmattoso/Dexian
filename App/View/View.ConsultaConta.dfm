@@ -31,6 +31,7 @@ inherited FrmConsultaConta: TFrmConsultaConta
       Height = 3
       Cursor = crVSplit
       Align = alTop
+      Beveled = True
       ExplicitTop = 120
       ExplicitWidth = 321
     end

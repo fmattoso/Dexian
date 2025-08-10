@@ -36,12 +36,15 @@ inherited FrmManutencaoFiltroConta: TFrmManutencaoFiltroConta
   inherited PnlMenu: TPanel
     Height = 234
     StyleElements = [seFont, seClient, seBorder]
+    ExplicitHeight = 234
     inherited BttnSalvar: TButton
       Top = 138
       OnClick = BttnSalvarClick
+      ExplicitTop = 138
     end
     inherited BttnSair: TButton
       Top = 186
+      ExplicitTop = 186
     end
     inherited DBNvManutencao: TDBNavigator
       Hints.Strings = ()

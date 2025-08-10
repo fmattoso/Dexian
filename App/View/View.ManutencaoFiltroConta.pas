@@ -3,9 +3,11 @@ unit View.ManutencaoFiltroConta;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, View.Manutencao, Vcl.Buttons,
-  Vcl.DBCtrls, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.NumberBox, Controller.Conta, Data.DB;
+  Vcl.DBCtrls, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.NumberBox,
+  Controller.Conta, Data.DB;
 
 type
   TFrmManutencaoFiltroConta = class(TFrmManutencao)
@@ -37,7 +39,8 @@ type
     FController: TControllerConta;
   public
     { Public declarations }
-    constructor Create(AOwner: TComponent; ADataSource: TDataSource; AIdAgencia: Integer; AModo: Char = 'I'; AId: Integer = -1); overload;
+    constructor Create(AOwner: TComponent; ADataSource: TDataSource;
+      AIdAgencia: Integer; AModo: Char = 'I'; AId: Integer = -1); overload;
     destructor Destroy; override;
   end;
 
@@ -48,7 +51,7 @@ implementation
 
 {$R *.dfm}
 
-uses DAO.Conexao;
+uses DAO.Conexao, System.DateUtils;
 
 procedure TFrmManutencaoFiltroConta.BttnSalvarClick(Sender: TObject);
 var
@@ -124,10 +127,27 @@ begin
     ValFim[5] := Null;
   end;
 
-  ConsultaDataSource.DataSet := FController.Filtrar(FIdAgencia, Campos, ValIni, ValFim);
+  ConsultaDataSource.DataSet := FController.Filtrar(FIdAgencia, Campos,
+    ValIni, ValFim);
+  ConsultaDataSource.DataSet.FieldByName('ContaId').Visible := False;
+  ConsultaDataSource.DataSet.FieldByName('AgenciaId').Visible := False;
+  ConsultaDataSource.DataSet.FieldByName('NumeroConta').DisplayLabel :=
+    'Número da Conta';
+  ConsultaDataSource.DataSet.FieldByName('NumeroConta').DisplayWidth := 40;
+  ConsultaDataSource.DataSet.FieldByName('DataUltimoMovimento').DisplayLabel :=
+    'Último Movimento';
+  ConsultaDataSource.DataSet.FieldByName('DataUltimoMovimento')
+    .DisplayWidth := 35;
+  ConsultaDataSource.DataSet.FieldByName('Saldo').DisplayLabel := 'Saldo';
+  ConsultaDataSource.DataSet.FieldByName('Observacoes').DisplayLabel :=
+    'Observações';
+  ConsultaDataSource.DataSet.FieldByName('Observacoes').DisplayWidth := 100;
+
 end;
 
-constructor TFrmManutencaoFiltroConta.Create(AOwner: TComponent; ADataSource: TDataSource; AIdAgencia: Integer; AModo: Char = 'I'; AId: Integer = -1);
+constructor TFrmManutencaoFiltroConta.Create(AOwner: TComponent;
+  ADataSource: TDataSource; AIdAgencia: Integer; AModo: Char = 'I';
+  AId: Integer = -1);
 begin
   inherited Create(AOwner, ADataSource, AModo, AId);
   FIdAgencia := AIdAgencia;
@@ -141,16 +161,21 @@ begin
 end;
 
 procedure TFrmManutencaoFiltroConta.FormShow(Sender: TObject);
+var
+  Ano, Mes, Dia: Word;
 begin
   inherited;
+  DecodeDate(Now, Ano, Mes, Dia);
   EdtNumeroConta.Clear;
   DtTmPckrDtUltimoMovimentoI.DateTime := Now;
   DtTmPckrDtUltimoMovimentoF.DateTime := Now;
   NmbrBxSaldoI.Value := 0;
   NmbrBxSaldoF.Value := 0;
   MmObservacoes.Lines.Clear;
-  DtTmDtAtualizaI.DateTime := Now;
-  DtTmDtAtualizaF.DateTime := Now;
+  DtTmDtCriacaoI.DateTime := EncodeDateTime(Ano, Mes, Dia, 0, 0, 0, 0);
+  DtTmDtCriacaoF.DateTime := EncodeDateTime(Ano, Mes, Dia, 23, 59, 59, 999);
+  DtTmDtAtualizaI.DateTime := EncodeDateTime(Ano, Mes, Dia, 0, 0, 0, 0);
+  DtTmDtAtualizaF.DateTime := EncodeDateTime(Ano, Mes, Dia, 23, 59, 59, 999);
 end;
 
 end.

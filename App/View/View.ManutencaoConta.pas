@@ -25,6 +25,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure BttnSalvarClick(Sender: TObject);
     procedure DBNvManutencaoClick(Sender: TObject; Button: TNavigateBtn);
+    procedure BttnRestaurarClick(Sender: TObject);
   private
     { Private declarations }
     FIdAgencia: Integer;
@@ -68,6 +69,12 @@ begin
 end;
 
 procedure TFrmManutencaoConta.FormShow(Sender: TObject);
+begin
+  inherited;
+  CarregaCampos;
+end;
+
+procedure TFrmManutencaoConta.BttnRestaurarClick(Sender: TObject);
 begin
   inherited;
   CarregaCampos;

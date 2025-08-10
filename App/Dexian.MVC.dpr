@@ -15,7 +15,8 @@ uses
   Controller.Conta in 'Controller\Controller.Conta.pas',
   View.ConsultaConta in 'View\View.ConsultaConta.pas' {FrmConsultaConta},
   View.ManutencaoConta in 'View\View.ManutencaoConta.pas' {FrmManutencaoConta},
-  View.ManutencaoFiltroConta in 'View\View.ManutencaoFiltroConta.pas' {FrmManutencaoFiltroConta};
+  View.ManutencaoFiltroConta in 'View\View.ManutencaoFiltroConta.pas' {FrmManutencaoFiltroConta},
+  DAO.Relatorio in 'DAO\DAO.Relatorio.pas' {DMRelatorio: TDataModule};
 
 {$R *.res}
 
@@ -25,5 +26,6 @@ begin
   Application.CreateForm(TFrmPrincipal, FrmPrincipal);
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TFrmManutencaoFiltroConta, FrmManutencaoFiltroConta);
+  Application.CreateForm(TDMRelatorio, DMRelatorio);
   Application.Run;
 end.

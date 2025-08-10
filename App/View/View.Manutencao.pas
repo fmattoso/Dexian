@@ -3,7 +3,8 @@ unit View.Manutencao;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.DBCtrls, Vcl.StdCtrls,
   Vcl.ExtCtrls, Data.DB;
 
@@ -25,12 +26,14 @@ type
     procedure SetDataSource(Value: TDataSource);
   public
     { Public declarations }
-    constructor Create(AOwner: TComponent; ADataSource: TDataSource; AModo: Char = 'I'; AId: Integer = -1); overload;
+    constructor Create(AOwner: TComponent; ADataSource: TDataSource;
+      AModo: Char = 'I'; AId: Integer = -1); overload;
     destructor Destroy; override;
 
-    property Id: Integer read FId write SetId;
+    property Id: Integer read Fid write SetId;
     property Modo: Char read FModo;
-    property ConsultaDataSource: TDataSource read FDataSource write SetDataSource;
+    property ConsultaDataSource: TDataSource read FDataSource
+      write SetDataSource;
   end;
 
 var
@@ -45,11 +48,12 @@ begin
   Close;
 end;
 
-constructor TFrmManutencao.Create(AOwner: TComponent; ADataSource: TDataSource; AModo: Char = 'I'; AId: Integer = -1);
+constructor TFrmManutencao.Create(AOwner: TComponent; ADataSource: TDataSource;
+  AModo: Char = 'I'; AId: Integer = -1);
 begin
   inherited Create(AOwner);
 
-  FId := AId;
+  Fid := AId;
   FModo := AModo;
   FDataSource := ADataSource;
   DBNvManutencao.DataSource := ADataSource;
@@ -65,7 +69,7 @@ end;
 
 procedure TFrmManutencao.SetId(Value: Integer);
 begin
-  FId := Value;
+  Fid := Value;
 end;
 
 procedure TFrmManutencao.SetDataSource(Value: TDataSource);

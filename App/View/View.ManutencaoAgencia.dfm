@@ -1,5 +1,5 @@
 inherited FrmManutencaoAgencia: TFrmManutencaoAgencia
-  Caption = 'Manuten'#231#227'o Ag'#234'ncia'
+  Caption = 'Manuten'#231#227'o de Ag'#234'ncia'
   ClientHeight = 208
   ClientWidth = 500
   StyleElements = [seFont, seClient, seBorder]

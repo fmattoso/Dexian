@@ -3,7 +3,8 @@ unit View.ConsultaConta;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, View.Consulta, Data.DB, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, Controller.Agencia, Controller.Conta;
 
@@ -41,7 +42,6 @@ implementation
 
 uses DAO.Conexao, View.ManutencaoConta, View.ManutencaoFiltroConta;
 
-
 procedure TFrmConsultaConta.FormCreate(Sender: TObject);
 begin
   inherited;
@@ -75,36 +75,40 @@ begin
   { Configurar a exibição na Grid }
   DtSrcConsulta.DataSet.FieldByName('ContaId').Visible := False;
   DtSrcConsulta.DataSet.FieldByName('AgenciaId').Visible := False;
-  DtSrcConsulta.DataSet.FieldByName('NumeroConta').DisplayLabel := 'Número da Conta';
+  DtSrcConsulta.DataSet.FieldByName('NumeroConta').DisplayLabel :=
+    'Número da Conta';
   DtSrcConsulta.DataSet.FieldByName('NumeroConta').DisplayWidth := 40;
-  DtSrcConsulta.DataSet.FieldByName('DataUltimoMovimento').DisplayLabel := 'Último Movimento';
+  DtSrcConsulta.DataSet.FieldByName('DataUltimoMovimento').DisplayLabel :=
+    'Último Movimento';
   DtSrcConsulta.DataSet.FieldByName('DataUltimoMovimento').DisplayWidth := 35;
   DtSrcConsulta.DataSet.FieldByName('Saldo').DisplayLabel := 'Saldo';
-//  DtSrcConsulta.DataSet.FieldByName('NumeroConta').DisplayWidth := 40;
-  DtSrcConsulta.DataSet.FieldByName('Observacoes').DisplayLabel := 'Observações';
+  DtSrcConsulta.DataSet.FieldByName('Observacoes').DisplayLabel :=
+    'Observações';
   DtSrcConsulta.DataSet.FieldByName('Observacoes').DisplayWidth := 100;
 end;
 
 procedure TFrmConsultaConta.BttnAlterarClick(Sender: TObject);
 var
-  FManutencao : TFrmManutencaoConta;
+  FManutencao: TFrmManutencaoConta;
   Id: Integer;
 begin
   inherited;
   Id := DtSrcConsulta.DataSet.FieldByName('ContaId').AsInteger;
-  FManutencao := TFrmManutencaoConta.Create(Self, DtSrcConsulta, FIdAgencia, 'A', Id);
+  FManutencao := TFrmManutencaoConta.Create(Self, DtSrcConsulta,
+    FIdAgencia, 'A', Id);
   FManutencao.ShowModal;
   AtualizarGridConta;
 end;
 
 procedure TFrmConsultaConta.BttnConsultarClick(Sender: TObject);
 var
-  FManutencao : TFrmManutencaoConta;
+  FManutencao: TFrmManutencaoConta;
   Id: Integer;
 begin
   inherited;
   Id := DtSrcConsulta.DataSet.FieldByName('ContaId').AsInteger;
-  FManutencao := TFrmManutencaoConta.Create(Self, DtSrcConsulta, FIdAgencia, 'C', Id);
+  FManutencao := TFrmManutencaoConta.Create(Self, DtSrcConsulta,
+    FIdAgencia, 'C', Id);
   FManutencao.ShowModal;
 end;
 
@@ -113,13 +117,14 @@ var
   FManutencao: TFrmManutencaoFiltroConta;
 begin
   inherited;
-  FManutencao := TFrmManutencaoFiltroConta.Create(Self, DtSrcConsulta, FIdAgencia);
+  FManutencao := TFrmManutencaoFiltroConta.Create(Self, DtSrcConsulta,
+    FIdAgencia);
   FManutencao.ShowModal;
 end;
 
 procedure TFrmConsultaConta.BttnIncluirClick(Sender: TObject);
 var
-  FManutencao : TFrmManutencaoConta;
+  FManutencao: TFrmManutencaoConta;
 begin
   inherited;
   FManutencao := TFrmManutencaoConta.Create(Self, DtSrcConsulta, FIdAgencia);
